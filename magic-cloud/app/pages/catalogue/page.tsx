@@ -252,7 +252,7 @@ export default function Example() {
 
     const openProduct = (idProduct: string | number) => {
         sendEventToKafka('openProduct', { productId: idProduct });
-        router.push('/product?productId=' + idProduct);
+        router.push('/pages/product?productId=' + idProduct);
 
     }
 
@@ -302,12 +302,12 @@ export default function Example() {
                                     <div className="flex h-full space-x-8">
                                         {navigation.categories.map((category) => (
                                             <Popover key={category.name} className="flex">
-                                                {(open = { openPop }) => (
+                                                {(props) => (
                                                     <>
                                                         <div className="relative flex">
                                                             <PopoverButton
                                                                 className={classNames(
-                                                                    open
+                                                                    props.open 
                                                                         ? 'text-indigo-600'
                                                                         : 'border-transparent text-gray-700 hover:text-gray-800',
                                                                     'relative z-10 -mb-px flex items-center pt-px font-medium transition-colors duration-200 ease-out',
@@ -340,7 +340,7 @@ export default function Example() {
                                                                                     >
                                                                                         {section.items.map((item) => (
                                                                                             <li key={item.name} className="flex">
-                                                                                                <Link href="./standin" onClick={() => navPage(item.id)}>
+                                                                                                <Link href="./filler" onClick={() => navPage(item.id)}>
                                                                                                     <div className="hover:text-gray-800">
                                                                                                         {item.name}
                                                                                                     </div></Link>
@@ -440,9 +440,9 @@ export default function Example() {
                                 </ul>
 
                                 {filters.map((section) => (
-                                    <Disclosure key={section.id} className="border-t border-gray-200 px-4 py-6">
-                                        {({ open = { openPop } }) => (
-                                            <>
+                                    <Disclosure key={section.id} >
+                                        {({ open }) => (
+                                            <div className="border-t border-gray-200 px-4 py-6">
                                                 <h3 className="-mx-2 -my-3 flow-root">
                                                     <DisclosureButton className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                                                         <span className="font-medium text-gray-900">{section.name}</span>
@@ -477,8 +477,9 @@ export default function Example() {
                                                         ))}
                                                     </div>
                                                 </DisclosurePanel>
-                                            </>
+                                            </div>
                                         )}
+                                        
                                     </Disclosure>
                                 ))}
                             </form>
@@ -510,12 +511,12 @@ export default function Example() {
                                         <div className="py-1">
                                             {sortOptions.map((option) => (
                                                 <MenuItem key={option.name}>
-                                                    {({ open = { openPop } }) => (
+                                                    {(props) => (
                                                         <a
                                                             href={option.href}
                                                             className={classNames(
                                                                 option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                                                                open ? 'bg-gray-100' : '',
+                                                                props.focus ? 'bg-gray-100' : '',
                                                                 'block px-4 py-2 text-sm',
                                                             )}
                                                         >

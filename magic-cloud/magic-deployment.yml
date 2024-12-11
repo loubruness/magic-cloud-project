@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magic-cloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magic-cloud
+  template:
+    metadata:
+      labels:
+        app: magic-cloud
+    spec:
+      containers:
+        - name: magic-cloud
+          image: "magic-cloud:latest"
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: magic-cloud
+spec:
+  ports:
+    - nodePort: 31280
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: magic-cloud
+  type: NodePort

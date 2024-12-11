@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magic-cloud-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magic-cloud-back
+  template:
+    metadata:
+      labels:
+        app: magic-cloud-back
+    spec:
+      containers:
+        - name: magic-cloud-back
+          image: magic-cloud-back
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: magic-cloud-back
+spec:
+  ports:
+    - nodePort: 31280
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: magic-cloud-back
+  type: NodePort

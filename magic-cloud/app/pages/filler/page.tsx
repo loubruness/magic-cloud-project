@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import {
     Popover,
     PopoverButton,
@@ -141,9 +141,9 @@ const sendEventToKafka = async (event: string, data: unknown) => {
 
 
 export default function Example() {
-    const [openPop, setOpen] = useState(false)
+    const [, setOpen] = useState(false)
 
-    
+
     function navPage(idProduct: string | number) {
         sendEventToKafka('navPage', { pageId: idProduct });
 
@@ -185,12 +185,12 @@ export default function Example() {
                                     <div className="flex h-full space-x-8">
                                         {navigation.categories.map((category) => (
                                             <Popover key={category.name} className="flex">
-                                                {(open = { openPop }) => (
+                                                {(props) => (
                                                     <>
                                                         <div className="relative flex">
                                                             <PopoverButton
                                                                 className={classNames(
-                                                                    open
+                                                                    props.open
                                                                         ? 'text-indigo-600'
                                                                         : 'border-transparent text-gray-700 hover:text-gray-800',
                                                                     'relative z-10 -mb-px flex items-center pt-px font-medium transition-colors duration-200 ease-out',
@@ -285,18 +285,19 @@ export default function Example() {
                 </nav>
             </header>
             <div className='flex justify-center items-center w-full h-full flex-col'>
-                <p className='pt-52 text-center'>This page only exists for statistic gathering purposes. <br />To consult our list of products, please click on the button below</p> 
+                <p className='pt-52 text-center'>This page only exists for statistic gathering purposes. <br />To consult our list of products, please click on the button below</p>
                 <Link href="./catalogue"><button
                     className="mt-10 tracking-wide font-semibold bg-gradient-to-tl from-indigo-500 to-purple-400 text-gray-100 w-25 py-4 rounded-lg hover:bg-gradient-to-tr from-blue-500 to-indigo-500 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                       
+
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-5 h-5 text-inherit ml-5">
                         <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z"></path>
                         <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z"></path>
                     </svg>
                     <span className="w-20 mr-3">
                         Home
-                    </span> 
-                </button></Link>
+                    </span>
+                </button>
+                </Link>
             </div>
         </div>
     )

@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: magic-cloud
-          image: "magic-cloud:latest"
-          imagePullPolicy: Never
+          image: paulinedav/magic-cloud
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -26,10 +26,10 @@ metadata:
   name: magic-cloud
 spec:
   ports:
-    - nodePort: 31280
-      port: 8080
+    - nodePort: 31281
+      port: 3000
       protocol: TCP
-      targetPort: 8080
+      targetPort: 3000
   selector:
     app: magic-cloud
   type: NodePort

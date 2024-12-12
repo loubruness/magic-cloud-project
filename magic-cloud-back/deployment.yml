@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: magic-cloud-back
-          image: magic-cloud-back
+          image: loubix/magic-cloud-back
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -26,10 +26,9 @@ metadata:
   name: magic-cloud-back
 spec:
   ports:
-    - nodePort: 31280
-      port: 8080
+    - port: 8080
       protocol: TCP
       targetPort: 8080
   selector:
     app: magic-cloud-back
-  type: NodePort
+  type: ClusterIP

@@ -14,24 +14,20 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:10.1
-          imagePullPolicy: "IfNotPresent"
+          image: paulinedav/custom-postgres:10.1 # Using the custom image
+          imagePullPolicy: "Always"
           ports:
             - containerPort: 5432
           envFrom:
             - secretRef:
-                name: postgres-secret            
+                name: postgres-secret # Secrets for PostgreSQL environment variables
             - configMapRef:
-                name: postgres-config
+                name: postgres-config # ConfigMap for additional environment variables
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
+            - mountPath: /var/lib/postgresql/data # Persistent volume for database data
               name: postgredb
-            - mountPath: /docker-entrypoint-initdb.d
-              name: init-scripts
       volumes:
         - name: postgredb
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
-        - name: init-scripts
-          configMap:
-            name: postgres-init-scripts
+          #persistentVolumeClaim:
+            #claimName: postgres-pv-claim
+          emptyDir: {}

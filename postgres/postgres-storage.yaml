@@ -13,6 +13,7 @@ spec:
     - ReadWriteMany
   hostPath:
     path: "/mnt/data"
+  persistentVolumeReclaimPolicy: Delete
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1

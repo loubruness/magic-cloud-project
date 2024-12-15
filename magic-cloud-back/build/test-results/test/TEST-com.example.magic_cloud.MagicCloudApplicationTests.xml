@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.magic_cloud.MagicCloudApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-12T15:15:52" hostname="BOOK-MKKT2POU76" time="0.579">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.example.magic_cloud.MagicCloudApplicationTests" time="0.579"/>
+  <system-out><![CDATA[16:15:50.837 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.magic_cloud.MagicCloudApplicationTests]: MagicCloudApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:15:50.923 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.magic_cloud.MagicCloudApplication for test class com.example.magic_cloud.MagicCloudApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.2)
+
+2024-12-12T16:15:51.279+01:00  INFO 24836 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : Starting MagicCloudApplicationTests using Java 17.0.13 with PID 24836 (started by loubr in C:\Users\loubr\M2\SoftwareForCloud\MagicCloud\magic-cloud-project\magic-cloud-back)
+2024-12-12T16:15:51.279+01:00  INFO 24836 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2024-12-12T16:15:52.214+01:00  INFO 24836 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : Started MagicCloudApplicationTests in 1.148 seconds (process running for 2.063)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

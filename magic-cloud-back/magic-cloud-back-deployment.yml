@@ -14,10 +14,21 @@ spec:
     spec:
       containers:
         - name: magic-cloud-back
-          image: magic-cloud-back
+          image: paulinedav/magic-cloud-back
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: "postgres"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: "shop"
+            - name: DB_USER
+              value: "magic-cloud-user"
+            - name: DB_PASSWORD
+              value: "magic-cloud-password"
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -26,10 +37,9 @@ metadata:
   name: magic-cloud-back
 spec:
   ports:
-    - nodePort: 31280
-      port: 8080
+    - port: 8080
       protocol: TCP
       targetPort: 8080
   selector:
     app: magic-cloud-back
-  type: NodePort
+  type: ClusterIP

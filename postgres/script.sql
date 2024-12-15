@@ -1,10 +1,34 @@
 -- Drop tables if they exist
 DROP TABLE IF EXISTS orders, products, categories, users CASCADE;
 
+-- Create a new user (or skip if already exists)
+DO $$ 
+BEGIN
+   IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'magic-cloud-user') THEN
+      CREATE ROLE "magic-cloud-user" WITH LOGIN PASSWORD 'magic-cloud-password';
+   END IF;
+END $$;
+
+-- Grant necessary privileges to the user
+ALTER ROLE "magic-cloud-user" CREATEDB;
+
 -- Connect to the "shop" database
+-- Assuming the "shop" database already exists; otherwise, create it first
 \c shop;
 
--- Create the users table first
+-- Grant privileges on the "shop" database to the new user
+GRANT CONNECT ON DATABASE shop TO "magic-cloud-user";
+GRANT USAGE ON SCHEMA public TO "magic-cloud-user";  -- Grants usage of schema
+
+-- Grant all privileges on all tables and sequences within the public schema
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "magic-cloud-user";  -- Tables
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO "magic-cloud-user";  -- Sequences
+
+-- Also, grant privileges on future tables and sequences within the public schema
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO "magic-cloud-user";
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO "magic-cloud-user";
+
+-- Create the users table
 CREATE TABLE users (
    id_user SERIAL PRIMARY KEY,
    email VARCHAR(50) NOT NULL UNIQUE,

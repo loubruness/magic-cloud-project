@@ -1,4 +1,4 @@
-package main.java.com.example.backend;
+package com.example.backend;
 
 import jakarta.persistence.*;
 import lombok.Data;

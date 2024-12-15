@@ -1,6 +1,6 @@
-package main.java.com.example.backend;
+package com.example.backend;
 
-import com.example.backend.User;
+// import com.example.backend.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

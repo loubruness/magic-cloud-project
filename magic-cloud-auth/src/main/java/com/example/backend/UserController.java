@@ -1,7 +1,7 @@
 package com.example.backend;
 
-import com.example.backend.User;
-import com.example.backend.UserService;
+// import com.example.backend.User;
+// import com.example.backend.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

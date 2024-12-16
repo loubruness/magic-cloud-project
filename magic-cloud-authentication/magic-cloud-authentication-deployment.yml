@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magic-cloud-authentication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magic-cloud-authentication
+  template:
+    metadata:
+      labels:
+        app: magic-cloud-authentication
+    spec:
+      containers:
+        - name: magic-cloud-authentication
+          image: loubix/magic-cloud-authentication
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+          env:
+            - name: DB_HOST
+              value: "postgres"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: "shop"
+            - name: DB_USER
+              value: "magic-cloud-user"
+            - name: DB_PASSWORD
+              value: "magic-cloud-password"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: magic-cloud-authentication
+spec:
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: magic-cloud-authentication
+  type: ClusterIP

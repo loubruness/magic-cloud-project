@@ -24,14 +24,14 @@ export default function Register() {
         setError("");
 
         try {
-            const response = await fetch("/api/register", {
+            const response = await fetch("http://localhost:8080/api/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
             if (!response.ok) throw new Error("Registration failed.");
-            router.push("/login");
+            router.push("/catalogue");
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(err.message);

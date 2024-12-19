@@ -64,12 +64,14 @@ package com.example.magic_cloud_authentication;
 //     }
 // }
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-@Entity
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.Table;
+
+// @Entity
 // @Table(name = "users")
 public class User {
-    @Id
+    // @Id
     private Long id_user;
     private String email;
     private String password;

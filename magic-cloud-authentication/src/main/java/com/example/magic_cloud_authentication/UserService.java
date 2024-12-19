@@ -37,38 +37,37 @@ package com.example.magic_cloud_authentication;
 // }
 
 // import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserService {
-
-    private final JdbcTemplate jdbcTemplate;
-
-    // @Autowired
-    public UserService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    
+    @Autowired(required = false)
+    private JdbcTemplate jdbcTemplate;
     
     // Fetch all users
     public List<User> getAllUsers() {
-        String sql = "SELECT id_user, email, password, name, last_name FROM users";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            User user = new User();
-            user.setId_user(rs.getLong("id_user"));
-            user.setEmail(rs.getString("email"));
-            user.setPassword(rs.getString("password"));
-            user.setName(rs.getString("name"));
-            user.setLast_name(rs.getString("last_name"));
-            return user;
-        });
+        if (jdbcTemplate == null) {
+        throw new IllegalStateException("JdbcTemplate is not initialized.");
     }
-    
-    // Insert a new user
-    public void createUser(User user) {
-        String sql = "INSERT INTO users (email, password, name, last_name) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, user.getEmail(), user.getPassword(), user.getName(), user.getLast_name());
+    String sql = "SELECT id_user, email, password, name, last_name FROM users";
+    return jdbcTemplate.query(sql, (rs, rowNum) -> {
+        User user = new User();
+        user.setId_user(rs.getLong("id_user"));
+        user.setEmail(rs.getString("email"));
+        user.setPassword(rs.getString("password"));
+        user.setName(rs.getString("name"));
+        user.setLast_name(rs.getString("last_name"));
+        return user;
+    });
     }
+    // // Insert a new user
+    // public void createUser(User user) {
+    //     String sql = "INSERT INTO users (email, password, name, last_name) VALUES (?, ?, ?, ?)";
+    //     jdbcTemplate.update(sql, user.getEmail(), user.getPassword(), user.getName(), user.getLast_name());
+    // }
 }

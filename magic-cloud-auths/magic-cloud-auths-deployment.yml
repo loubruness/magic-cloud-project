@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: magic-cloud-authentication
+  name: magic-cloud-auths
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: magic-cloud-authentication
+      app: magic-cloud-auths
   template:
     metadata:
       labels:
-        app: magic-cloud-authentication
+        app: magic-cloud-auths
     spec:
       containers:
-        - name: magic-cloud-authentication
-          image: loubix/magic-cloud-authentication:latest
-          imagePullPolicy: IfNotPresent
+        - name: magic-cloud-auths
+          image: loubix/magic-cloud-auths:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
@@ -34,12 +34,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: magic-cloud-authentication
+  name: magic-cloud-auths
 spec:
   ports:
     - port: 8081
       protocol: TCP
       targetPort: 8080
   selector:
-    app: magic-cloud-authentication
+    app: magic-cloud-auths
   type: ClusterIP

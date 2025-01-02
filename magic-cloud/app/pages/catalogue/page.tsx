@@ -18,7 +18,7 @@ import {
     PopoverGroup,
     PopoverPanel,
 } from '@headlessui/react'
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import Image from "next/image";
 import Link from 'next/link';
@@ -265,6 +265,91 @@ export default function Example() {
     //         localStorage.removeItem('cart');
     //     }
     // }, [])
+    
+
+    const fetchProducts = async () => {
+        try {
+            console.log('fetching products');
+            const response = await fetch('http://magic-cloud-back.info/products');
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            console.log(response);
+            const data = await response.json();
+            console.log(data);  // Should log the list of products
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+
+    const fetchProducts2 = async () => {
+        try {
+            console.log('fetching products');
+            const response = await fetch('http://magic-cloud-back:8080/products');
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            console.log(response);
+            const data = await response.json();
+            console.log(data);  // Should log the list of products
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+
+    const fetchProducts3 = async () => {
+        try {
+            console.log('fetching products');
+            const response = await fetch('http://magic-cloud-back.default.svc.cluster.local:80/products');
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            console.log(response);
+            const data = await response.json();
+            console.log(data);  // Should log the list of products
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+
+    const fetchProducts4 = async () => {
+        try {
+            console.log('fetching products');
+            const response = await fetch('http://localhost:8080/products');
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            console.log(response);
+            const data = await response.json();
+            console.log(data);  // Should log the list of products
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+
+    const fetchProducts5 = async () => {
+        try {
+            console.log('fetching products');
+            const response = await fetch('http://magic-cloud-back.default.svc.cluster.local:8080/products');
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            console.log(response);
+            const data = await response.json();
+            console.log(data);  // Should log the list of products
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+
+    useEffect(() => {
+        console.log('here');
+        fetchProducts();
+        fetchProducts2();
+        fetchProducts3();
+        fetchProducts4();
+        fetchProducts5();
+    }, []);
 
 
     return (

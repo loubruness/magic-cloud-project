@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: example-ingress
   annotations:
-#    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
     - host: magic-cloud.info

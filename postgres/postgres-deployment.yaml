@@ -21,8 +21,8 @@ spec:
           envFrom:
             - secretRef:
                 name: postgres-secret # Secrets for PostgreSQL environment variables
-            - configMapRef:
-                name: postgres-config # ConfigMap for additional environment variables
+            # - configMapRef:
+            #     name: postgres-config # ConfigMap for additional environment variables
           volumeMounts:
             - mountPath: /var/lib/postgresql/data # Persistent volume for database data
               name: postgredb

@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: magic-cloud-back
-          image: paulinedav/magic-cloud-back
-          imagePullPolicy: IfNotPresent
+          image: paulinedav/magic-cloud-back:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:

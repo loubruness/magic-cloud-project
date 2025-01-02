@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: magic-cloud-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    # Front-end application
+    - host: magic-cloud.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: magic-cloud
+                port:
+                  number: 3000
+
+    # Back-end application
+    - host: magic-cloud-back.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: magic-cloud-back
+                port:
+                  number: 8080

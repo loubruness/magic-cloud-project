@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magic-cloud-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magic-cloud-auth
+  template:
+    metadata:
+      labels:
+        app: magic-cloud-auth
+    spec:
+      containers:
+        - name: magic-cloud-auth
+          image: paulinedav/magic-cloud-auth
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+          env:
+            - name: DB_HOST
+              value: "postgres.default.svc.cluster.local"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: "shop"
+            - name: DB_USER
+              value: "magic-cloud-user"
+            - name: DB_PASSWORD
+              value: "magic-cloud-password"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: magic-cloud-auth
+spec:
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: magic-cloud-auth
+  type: ClusterIP

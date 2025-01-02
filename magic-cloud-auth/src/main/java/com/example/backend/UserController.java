@@ -13,6 +13,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello, World!";
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
         return userService.registerUser(user);

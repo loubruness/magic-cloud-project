@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:55528")
+@CrossOrigin(origins = "http://magic-cloud.info")
 public class ProductController {
     
     @Autowired

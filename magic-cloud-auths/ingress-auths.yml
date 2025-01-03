@@ -3,17 +3,24 @@ kind: Ingress
 metadata:
   name: example-ingress-auths
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx 
+  ingressClassName: "nginx"
   rules:
     - host: magic-cloud-auths.info
       http:
         paths:
-          - path: /
+          - path: /register
             pathType: Prefix
             backend:
               service:
-                name: magic-cloud-auths
+                name: magic-cloud-back
                 port:
-                  number: 8081
+                  number: 8080
+          - path: /login
+            pathType: Prefix
+            backend:
+              service:
+                name: magic-cloud-back
+                port:
+                  number: 8080

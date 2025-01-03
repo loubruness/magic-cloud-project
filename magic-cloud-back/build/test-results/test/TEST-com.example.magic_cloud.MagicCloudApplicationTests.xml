@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.magic_cloud.MagicCloudApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-16T01:20:23" hostname="BOOK-MKKT2POU76" time="0.577">
+<testsuite name="com.example.magic_cloud.MagicCloudApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-01-03T18:38:42" hostname="BOOK-MKKT2POU76" time="0.597">
   <properties/>
-  <testcase name="contextLoads()" classname="com.example.magic_cloud.MagicCloudApplicationTests" time="0.577"/>
-  <system-out><![CDATA[02:20:16.183 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.magic_cloud.MagicCloudApplicationTests]: MagicCloudApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-02:20:16.288 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.magic_cloud.MagicCloudApplication for test class com.example.magic_cloud.MagicCloudApplicationTests
+  <testcase name="contextLoads()" classname="com.example.magic_cloud.MagicCloudApplicationTests" time="0.597"/>
+  <system-out><![CDATA[19:38:35.655 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.magic_cloud.MagicCloudApplicationTests]: MagicCloudApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:38:35.791 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.magic_cloud.MagicCloudApplication for test class com.example.magic_cloud.MagicCloudApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,17 +13,17 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.2)
 
-2024-12-16T02:20:16.722+01:00  INFO 21596 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : Starting MagicCloudApplicationTests using Java 17.0.13 with PID 21596 (started by loubr in C:\Users\loubr\M2\SoftwareForCloud\MagicCloud\magic-cloud-project\magic-cloud-back)
-2024-12-16T02:20:16.724+01:00  INFO 21596 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : No active profile set, falling back to 1 default profile: "default"
-2024-12-16T02:20:17.347+01:00  INFO 21596 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-16T02:20:17.369+01:00  INFO 21596 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 JPA repository interfaces.
-2024-12-16T02:20:17.741+01:00  INFO 21596 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-16T02:20:17.789+01:00  INFO 21596 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
-2024-12-16T02:20:17.791+01:00  INFO 21596 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
-2024-12-16T02:20:17.915+01:00  INFO 21596 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-12-16T02:20:18.045+01:00  INFO 21596 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-16T02:20:18.061+01:00  INFO 21596 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-16T02:20:21.810+01:00 ERROR 21596 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+2025-01-03T19:38:36.297+01:00  INFO 56608 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : Starting MagicCloudApplicationTests using Java 17.0.13 with PID 56608 (started by loubr in C:\Users\loubr\M2\SoftwareForCloud\MagicCloud\magic-cloud-project\magic-cloud-back)
+2025-01-03T19:38:36.298+01:00  INFO 56608 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2025-01-03T19:38:36.935+01:00  INFO 56608 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-03T19:38:36.958+01:00  INFO 56608 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 JPA repository interfaces.
+2025-01-03T19:38:37.333+01:00  INFO 56608 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-03T19:38:37.389+01:00  INFO 56608 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2025-01-03T19:38:37.391+01:00  INFO 56608 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2025-01-03T19:38:37.546+01:00  INFO 56608 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2025-01-03T19:38:37.684+01:00  INFO 56608 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-03T19:38:37.701+01:00  INFO 56608 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-03T19:38:41.459+01:00 ERROR 56608 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
 
 org.postgresql.util.PSQLException: The connection attempt failed.
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:354) ~[postgresql-42.6.0.jar:42.6.0]
@@ -177,7 +177,7 @@ Caused by: java.net.UnknownHostException: postgres
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.0.jar:42.6.0]
 	... 140 common frames omitted
 
-2024-12-16T02:20:21.826+01:00  WARN 21596 --- [    Test worker] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
+2025-01-03T19:38:41.473+01:00  WARN 56608 --- [    Test worker] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
 
 org.postgresql.util.PSQLException: The connection attempt failed.
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:354) ~[postgresql-42.6.0.jar:42.6.0]
@@ -331,11 +331,11 @@ Caused by: java.net.UnknownHostException: postgres
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.0.jar:42.6.0]
 	... 140 common frames omitted
 
-2024-12-16T02:20:21.986+01:00  INFO 21596 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-12-16T02:20:22.185+01:00  INFO 21596 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-12-16T02:20:22.190+01:00  INFO 21596 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-16T02:20:22.460+01:00  WARN 21596 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-16T02:20:23.258+01:00  INFO 21596 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : Started MagicCloudApplicationTests in 6.787 seconds (process running for 7.887)
+2025-01-03T19:38:41.602+01:00  INFO 56608 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2025-01-03T19:38:41.779+01:00  INFO 56608 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-01-03T19:38:41.784+01:00  INFO 56608 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-03T19:38:41.973+01:00  WARN 56608 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-03T19:38:42.409+01:00  INFO 56608 --- [    Test worker] c.e.m.MagicCloudApplicationTests         : Started MagicCloudApplicationTests in 6.412 seconds (process running for 7.697)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

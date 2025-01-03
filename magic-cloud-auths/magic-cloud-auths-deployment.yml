@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: magic-cloud-auths
-          image: loubix/magic-cloud-auths:latest
+          image: paulinedav/magic-cloud-auths:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 import logo from '../../assets/logo.png';
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Register() {
     const router = useRouter();
@@ -24,7 +24,8 @@ export default function Register() {
         setError("");
 
         try {
-            const response = await fetch("http://localhost:8080/api/register", {
+            console.log("");
+            const response = await fetch("http://magic-cloud-auths.info/api/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),

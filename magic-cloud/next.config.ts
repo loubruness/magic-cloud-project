@@ -5,4 +5,16 @@ const nextConfig: NextConfig = {
   /* config options here */
 };
 
+module.exports = {
+  async rewrites() {
+      return [
+          {
+              source: '/api/products',
+              destination: 'http://magic-cloud-back:8080/products',
+          },
+      ];
+  },
+};
+
+
 export default nextConfig;

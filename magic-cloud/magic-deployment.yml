@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: magic-cloud
-          image: paulinedav/magic-cloud
-          imagePullPolicy: IfNotPresent
+          image: paulinedav/magic-cloud:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
       restartPolicy: Always

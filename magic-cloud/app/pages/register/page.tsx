@@ -25,14 +25,14 @@ export default function Register() {
 
         try {
             console.log("");
-            const response = await fetch("http://magic-cloud-auths.info/api/register", {
+            const response = await fetch("/api/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
             if (!response.ok) throw new Error("Registration failed.");
-            router.push("/catalogue");
+            router.push("/pages/catalogue");
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(err.message);

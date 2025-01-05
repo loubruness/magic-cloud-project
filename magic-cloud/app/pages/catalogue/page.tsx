@@ -277,7 +277,7 @@ export default function Example() {
                 ...p,
                 price: p.price + ' 🪙',
                 imageSrc: logo,
-                href: `pages/product?productId=${p.idProduct}`,
+                href: `product?productId=${p.idProduct}`,
             }));
             setProducts(dataProducts);
         } catch (error) {

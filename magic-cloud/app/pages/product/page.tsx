@@ -1,14 +1,16 @@
 "use client"
 
-import { Radio, RadioGroup } from '@headlessui/react'
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState, Suspense } from 'react';
 import Image, { StaticImageData } from "next/image";
+import { Radio, RadioGroup } from '@headlessui/react'
+import { Suspense, useEffect, useState } from 'react';
+
 import Link from 'next/link';
 import { StarIcon } from '@heroicons/react/20/solid';
 import logo from 'app/assets/logo.png';
+import { useSearchParams } from 'next/navigation';
 
 const product = {
+    id: '0',
     name: 'Potion of Elemental Mastery',
     price: '250 🪙',
     href: '#',
@@ -58,259 +60,259 @@ const product = {
     details:
         'Each potion is brewed using rare ingredients such as phoenix feathers, enchanted spring water, and elemental essences. The Potion of Elemental Mastery is perfect for experienced magic users seeking temporary control over the elements. Note: Side effects may include glowing hands and a sudden affinity for elemental magic.',
 };
-const products = [
-    {
-        id: '1',
-        name: 'Earthen Flask of Vitality',
-        price: '48 🪙',
-        href: '#',
-        breadcrumbs: [
-            { id: 1, name: 'Alchemy', href: '#' },
-            { id: 2, name: 'Potions', href: '#' },
-        ],
-        images: [
-            {
-                src: logo,
-                alt: 'A tall, slender flask with a natural clay texture and cork stopper, glowing faintly with life magic.',
-            },
-        ],
-        colors: [
-            { name: 'Clay', class: 'bg-brown-500', selectedClass: 'ring-brown-500' },
-        ],
-        sizes: [
-            { name: 'One Size', inStock: true },
-        ],
-        description:
-            'This enchanted earthen flask restores vitality to its wielder when filled with any liquid.',
-        highlights: [
-            'Handcrafted by Earth Mages',
-            'Infused with natural clay magic',
-            'Cork stopper enchanted for preservation',
-        ],
-        details:
-            'The Earthen Flask of Vitality is made from high-quality magical clay. Perfect for adventurers seeking restorative power during long journeys.',
-    },
-    {
-        id: '2',
-        name: 'Nomad’s Endless Chalice',
-        price: '35 🪙',
-        href: '#',
-        breadcrumbs: [
-            { id: 1, name: 'Alchemy', href: '#' },
-            { id: 2, name: 'Artifacts', href: '#' },
-        ],
-        images: [
-            {
-                src: logo,
-                alt: 'An olive-green chalice that glows faintly with an icy mist, engraved with runes of preservation.',
-            },
-        ],
-        colors: [
-            { name: 'Olive Green', class: 'bg-green-500', selectedClass: 'ring-green-500' },
-        ],
-        sizes: [
-            { name: 'One Size', inStock: true },
-        ],
-        description:
-            'A magical chalice that keeps its contents at the perfect temperature, no matter the environment.',
-        highlights: [
-            'Insulated with Frost Runes',
-            'Durable enchantments for travel',
-            'Seal-tight lid for easy transport',
-        ],
-        details:
-            'The Nomad’s Endless Chalice is perfect for adventurers and explorers. It keeps potions fresh and enchanted drinks at peak potency.',
-    },
-    {
-        id: '3',
-        name: 'Scrolls of Focused Thought',
-        price: '89 🪙',
-        href: '#',
-        breadcrumbs: [
-            { id: 1, name: 'Magic', href: '#' },
-            { id: 2, name: 'Scrolls', href: '#' },
-        ],
-        images: [
-            {
-                src: logo,
-                alt: 'A set of enchanted scrolls glowing faintly as a mage writes upon them with golden ink.',
-            },
-        ],
-        colors: [
-            { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-        ],
-        sizes: [
-            { name: 'One Size', inStock: true },
-        ],
-        description:
-            'These scrolls are imbued with focus magic, enhancing productivity and clarity of thought.',
-        highlights: [
-            'Enchanted for concentration',
-            'Smooth, magical parchment',
-            'Perfect for spellcasting notes',
-        ],
-        details:
-            'Ideal for scholars and mages, the Scrolls of Focused Thought ensure precision and durability in all magical writings.',
-    },
-    {
-        id: '4',
-        name: 'Steel Quill of Precision',
-        price: '35 🪙',
-        href: '#',
-        breadcrumbs: [
-            { id: 1, name: 'Magic', href: '#' },
-            { id: 2, name: 'Tools', href: '#' },
-        ],
-        images: [
-            {
-                src: logo,
-                alt: 'A sleek black mechanical quill with golden accents, glowing faintly with arcane power.',
-            },
-        ],
-        colors: [
-            { name: 'Black', class: 'bg-black', selectedClass: 'ring-black' },
-        ],
-        sizes: [
-            { name: 'One Size', inStock: true },
-        ],
-        description:
-            'A precision-crafted mechanical quill enchanted for perfect strokes and durability.',
-        highlights: [
-            'Forged with enchanted steel',
-            'Durable and elegant design',
-            'Perfect for magical diagrams',
-        ],
-        details:
-            'The Steel Quill of Precision is a must-have for every mage. Its precision and balance make it the ideal tool for intricate spell work.',
-    },
-    {
-        id: '5',
-        name: 'Shimmering Tunic of Comfort',
-        price: '110 🪙',
-        href: '#',
-        breadcrumbs: [
-            { id: 1, name: 'Apparel', href: '#' },
-            { id: 2, name: 'Tunics', href: '#' },
-        ],
-        images: [
-            {
-                src: logo,
-                alt: 'A soft, shimmering white tunic that glows faintly under moonlight.',
-            },
-        ],
-        colors: [
-            { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-        ],
-        sizes: [
-            { name: 'S', inStock: true },
-            { name: 'M', inStock: true },
-            { name: 'L', inStock: true },
-            { name: 'XL', inStock: true },
-        ],
-        description:
-            'A magical tunic woven from enchanted threads, offering unparalleled comfort and durability.',
-        highlights: [
-            'Made from enchanted cotton',
-            'Soft and comfortable',
-            'Resistant to wear',
-        ],
-        details:
-            'This tunic is perfect for adventurers and travelers alike. Its enchanted fibers provide comfort in all conditions.',
-    },
-    {
-        id: '6',
-        name: 'Rose Essence Elixir',
-        price: '120 🪙',
-        href: '#',
-        breadcrumbs: [
-            { id: 1, name: 'Alchemy', href: '#' },
-            { id: 2, name: 'Elixirs', href: '#' },
-        ],
-        images: [
-            {
-                src: 'https://example.com/images/rose-elixir.jpg',
-                alt: 'A pink glowing potion bottle adorned with petals and golden seals.',
-            },
-        ],
-        colors: [
-            { name: 'Pink', class: 'bg-pink-500', selectedClass: 'ring-pink-500' },
-        ],
-        sizes: [
-            { name: 'One Size', inStock: true },
-        ],
-        description:
-            'A luxurious elixir infused with the essence of roses, granting charisma and allure.',
-        highlights: [
-            'Enhances charm',
-            'Long-lasting magical effects',
-            'Elegant bottle design',
-        ],
-        details:
-            'The Rose Essence Elixir is perfect for those seeking to captivate their audience. Its fragrance and charm effects are unparalleled.',
-    },
-    {
-        id: '7',
-        name: 'Musk of Enchanted Bloom',
-        price: '120 🪙',
-        href: '#',
-        breadcrumbs: [
-            { id: 1, name: 'Alchemy', href: '#' },
-            { id: 2, name: 'Elixirs', href: '#' },
-        ],
-        images: [
-            {
-                src: 'https://example.com/images/musk-elixir.jpg',
-                alt: 'A shimmering rose-gold potion vial glowing with magical energy.',
-            },
-        ],
-        colors: [
-            { name: 'Rose Gold', class: 'bg-rose-500', selectedClass: 'ring-rose-500' },
-        ],
-        sizes: [
-            { name: 'One Size', inStock: true },
-        ],
-        description:
-            'A fragrant elixir that enhances perception and unlocks the secrets of the natural world.',
-        highlights: [
-            'Grants heightened senses',
-            'Elegant, magical packaging',
-            'Perfect for explorers',
-        ],
-        details:
-            'This potion is a favorite of alchemists and nature-lovers alike, offering heightened awareness and lasting enchantment.',
-    },
-    {
-        id: '8',
-        name: 'Essence of Dusk',
-        price: '120 🪙',
-        href: '#',
-        breadcrumbs: [
-            { id: 1, name: 'Alchemy', href: '#' },
-            { id: 2, name: 'Elixirs', href: '#' },
-        ],
-        images: [
-            {
-                src: 'https://example.com/images/dusk-essence.jpg',
-                alt: 'A dark, mysterious potion with swirling shadows inside its container.',
-            },
-        ],
-        colors: [
-            { name: 'Dark', class: 'bg-black', selectedClass: 'ring-black' },
-        ],
-        sizes: [
-            { name: 'One Size', inStock: true },
-        ],
-        description:
-            'A bold elixir that grants the user a veil of shadows and increased stealth.',
-        highlights: [
-            'Perfect for stealth missions',
-            'Shadows swirl within',
-            'Elegant, dark design',
-        ],
-        details:
-            'The Essence of Dusk is prized by rogues and assassins, offering temporary mastery of the shadows.',
-    },
-];
+// const products = [
+//     {
+//         id: '1',
+//         name: 'Earthen Flask of Vitality',
+//         price: '48 🪙',
+//         href: '#',
+//         breadcrumbs: [
+//             { id: 1, name: 'Alchemy', href: '#' },
+//             { id: 2, name: 'Potions', href: '#' },
+//         ],
+//         images: [
+//             {
+//                 src: logo,
+//                 alt: 'A tall, slender flask with a natural clay texture and cork stopper, glowing faintly with life magic.',
+//             },
+//         ],
+//         colors: [
+//             { name: 'Clay', class: 'bg-brown-500', selectedClass: 'ring-brown-500' },
+//         ],
+//         sizes: [
+//             { name: 'One Size', inStock: true },
+//         ],
+//         description:
+//             'This enchanted earthen flask restores vitality to its wielder when filled with any liquid.',
+//         highlights: [
+//             'Handcrafted by Earth Mages',
+//             'Infused with natural clay magic',
+//             'Cork stopper enchanted for preservation',
+//         ],
+//         details:
+//             'The Earthen Flask of Vitality is made from high-quality magical clay. Perfect for adventurers seeking restorative power during long journeys.',
+//     },
+//     {
+//         id: '2',
+//         name: 'Nomad’s Endless Chalice',
+//         price: '35 🪙',
+//         href: '#',
+//         breadcrumbs: [
+//             { id: 1, name: 'Alchemy', href: '#' },
+//             { id: 2, name: 'Artifacts', href: '#' },
+//         ],
+//         images: [
+//             {
+//                 src: logo,
+//                 alt: 'An olive-green chalice that glows faintly with an icy mist, engraved with runes of preservation.',
+//             },
+//         ],
+//         colors: [
+//             { name: 'Olive Green', class: 'bg-green-500', selectedClass: 'ring-green-500' },
+//         ],
+//         sizes: [
+//             { name: 'One Size', inStock: true },
+//         ],
+//         description:
+//             'A magical chalice that keeps its contents at the perfect temperature, no matter the environment.',
+//         highlights: [
+//             'Insulated with Frost Runes',
+//             'Durable enchantments for travel',
+//             'Seal-tight lid for easy transport',
+//         ],
+//         details:
+//             'The Nomad’s Endless Chalice is perfect for adventurers and explorers. It keeps potions fresh and enchanted drinks at peak potency.',
+//     },
+//     {
+//         id: '3',
+//         name: 'Scrolls of Focused Thought',
+//         price: '89 🪙',
+//         href: '#',
+//         breadcrumbs: [
+//             { id: 1, name: 'Magic', href: '#' },
+//             { id: 2, name: 'Scrolls', href: '#' },
+//         ],
+//         images: [
+//             {
+//                 src: logo,
+//                 alt: 'A set of enchanted scrolls glowing faintly as a mage writes upon them with golden ink.',
+//             },
+//         ],
+//         colors: [
+//             { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
+//         ],
+//         sizes: [
+//             { name: 'One Size', inStock: true },
+//         ],
+//         description:
+//             'These scrolls are imbued with focus magic, enhancing productivity and clarity of thought.',
+//         highlights: [
+//             'Enchanted for concentration',
+//             'Smooth, magical parchment',
+//             'Perfect for spellcasting notes',
+//         ],
+//         details:
+//             'Ideal for scholars and mages, the Scrolls of Focused Thought ensure precision and durability in all magical writings.',
+//     },
+//     {
+//         id: '4',
+//         name: 'Steel Quill of Precision',
+//         price: '35 🪙',
+//         href: '#',
+//         breadcrumbs: [
+//             { id: 1, name: 'Magic', href: '#' },
+//             { id: 2, name: 'Tools', href: '#' },
+//         ],
+//         images: [
+//             {
+//                 src: logo,
+//                 alt: 'A sleek black mechanical quill with golden accents, glowing faintly with arcane power.',
+//             },
+//         ],
+//         colors: [
+//             { name: 'Black', class: 'bg-black', selectedClass: 'ring-black' },
+//         ],
+//         sizes: [
+//             { name: 'One Size', inStock: true },
+//         ],
+//         description:
+//             'A precision-crafted mechanical quill enchanted for perfect strokes and durability.',
+//         highlights: [
+//             'Forged with enchanted steel',
+//             'Durable and elegant design',
+//             'Perfect for magical diagrams',
+//         ],
+//         details:
+//             'The Steel Quill of Precision is a must-have for every mage. Its precision and balance make it the ideal tool for intricate spell work.',
+//     },
+//     {
+//         id: '5',
+//         name: 'Shimmering Tunic of Comfort',
+//         price: '110 🪙',
+//         href: '#',
+//         breadcrumbs: [
+//             { id: 1, name: 'Apparel', href: '#' },
+//             { id: 2, name: 'Tunics', href: '#' },
+//         ],
+//         images: [
+//             {
+//                 src: logo,
+//                 alt: 'A soft, shimmering white tunic that glows faintly under moonlight.',
+//             },
+//         ],
+//         colors: [
+//             { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
+//         ],
+//         sizes: [
+//             { name: 'S', inStock: true },
+//             { name: 'M', inStock: true },
+//             { name: 'L', inStock: true },
+//             { name: 'XL', inStock: true },
+//         ],
+//         description:
+//             'A magical tunic woven from enchanted threads, offering unparalleled comfort and durability.',
+//         highlights: [
+//             'Made from enchanted cotton',
+//             'Soft and comfortable',
+//             'Resistant to wear',
+//         ],
+//         details:
+//             'This tunic is perfect for adventurers and travelers alike. Its enchanted fibers provide comfort in all conditions.',
+//     },
+//     {
+//         id: '6',
+//         name: 'Rose Essence Elixir',
+//         price: '120 🪙',
+//         href: '#',
+//         breadcrumbs: [
+//             { id: 1, name: 'Alchemy', href: '#' },
+//             { id: 2, name: 'Elixirs', href: '#' },
+//         ],
+//         images: [
+//             {
+//                 src: 'https://example.com/images/rose-elixir.jpg',
+//                 alt: 'A pink glowing potion bottle adorned with petals and golden seals.',
+//             },
+//         ],
+//         colors: [
+//             { name: 'Pink', class: 'bg-pink-500', selectedClass: 'ring-pink-500' },
+//         ],
+//         sizes: [
+//             { name: 'One Size', inStock: true },
+//         ],
+//         description:
+//             'A luxurious elixir infused with the essence of roses, granting charisma and allure.',
+//         highlights: [
+//             'Enhances charm',
+//             'Long-lasting magical effects',
+//             'Elegant bottle design',
+//         ],
+//         details:
+//             'The Rose Essence Elixir is perfect for those seeking to captivate their audience. Its fragrance and charm effects are unparalleled.',
+//     },
+//     {
+//         id: '7',
+//         name: 'Musk of Enchanted Bloom',
+//         price: '120 🪙',
+//         href: '#',
+//         breadcrumbs: [
+//             { id: 1, name: 'Alchemy', href: '#' },
+//             { id: 2, name: 'Elixirs', href: '#' },
+//         ],
+//         images: [
+//             {
+//                 src: 'https://example.com/images/musk-elixir.jpg',
+//                 alt: 'A shimmering rose-gold potion vial glowing with magical energy.',
+//             },
+//         ],
+//         colors: [
+//             { name: 'Rose Gold', class: 'bg-rose-500', selectedClass: 'ring-rose-500' },
+//         ],
+//         sizes: [
+//             { name: 'One Size', inStock: true },
+//         ],
+//         description:
+//             'A fragrant elixir that enhances perception and unlocks the secrets of the natural world.',
+//         highlights: [
+//             'Grants heightened senses',
+//             'Elegant, magical packaging',
+//             'Perfect for explorers',
+//         ],
+//         details:
+//             'This potion is a favorite of alchemists and nature-lovers alike, offering heightened awareness and lasting enchantment.',
+//     },
+//     {
+//         id: '8',
+//         name: 'Essence of Dusk',
+//         price: '120 🪙',
+//         href: '#',
+//         breadcrumbs: [
+//             { id: 1, name: 'Alchemy', href: '#' },
+//             { id: 2, name: 'Elixirs', href: '#' },
+//         ],
+//         images: [
+//             {
+//                 src: 'https://example.com/images/dusk-essence.jpg',
+//                 alt: 'A dark, mysterious potion with swirling shadows inside its container.',
+//             },
+//         ],
+//         colors: [
+//             { name: 'Dark', class: 'bg-black', selectedClass: 'ring-black' },
+//         ],
+//         sizes: [
+//             { name: 'One Size', inStock: true },
+//         ],
+//         description:
+//             'A bold elixir that grants the user a veil of shadows and increased stealth.',
+//         highlights: [
+//             'Perfect for stealth missions',
+//             'Shadows swirl within',
+//             'Elegant, dark design',
+//         ],
+//         details:
+//             'The Essence of Dusk is prized by rogues and assassins, offering temporary mastery of the shadows.',
+//     },
+// ];
 
 
 interface Breadcrumb {
@@ -349,19 +351,13 @@ interface Product {
     details: string;
 }
 
-const sendEventToKafka = async (event: string, data: unknown) => {
-    try {
-        await fetch('/api/kafka', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ event, data }),
-        });
-    } catch (error) {
-        console.error('Failed to send event to Kafka:', error);
-    }
-};
+// type ProductDb = {
+//     idProduct: string | number;
+//     name: string;
+//     price: string;
+//     imageSrc: string;
+//     imageAlt: string;
+// };
 
 
 const reviews = { href: '#', average: 4, totalCount: 117 }
@@ -371,11 +367,72 @@ function classNames(...classes: string[]) {
 }
 
 export default function Example() {
-    const [selectedColor, setSelectedColor] = useState(product.colors[0])
-    const [selectedSize, setSelectedSize] = useState(product.sizes[0])
+    const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+    const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
     const [, setSelectedId] = useState<string>('');
-    const [selectedProduct, setSelectedProduct] = useState<Product>(products[0]);
+    const [selectedProduct, setSelectedProduct] = useState<Product>(product);
     const [success, setSuccess] = useState('');
+
+    const fetchProduct = async (id : string) => {
+        try {
+            console.log('fetching products');
+            const response = await fetch(`/api/products/${id}`); // Calls the proxy route
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            console.log(response);
+            const data = await response.json();
+            console.log(data); // Should log the list of products
+            const productSelected = {
+                    id : data.idProduct.toString(),
+                    name: data.name,
+                    price: data.price + ' 🪙',
+                    href: '#',
+                    breadcrumbs: [
+                        { id: 1, name: 'Alchemy', href: '#' },
+                        { id: 2, name: 'Potions', href: '#' },
+                    ],
+                    images: [
+                        {
+                            src: logo,
+                            alt: data.imageAlt,
+                        },
+                        {
+                            src: logo,
+                            alt: 'The potion displayed on an ancient alchemy table with magical runes glowing around it.',
+                        },
+                        {
+                            src: logo,
+                            alt: 'A close-up of the bottle’s intricate engravings and glowing stopper.',
+                        },
+                        {
+                            src: logo,
+                            alt: 'The potion glowing brightly in a dark room, illuminating nearby objects.',
+                        },
+                    ],
+                    colors: [
+                        { name: 'Black', class: 'bg-black', selectedClass: 'ring-black' },
+                    ],
+                    sizes: [
+                        { name: 'Small Vial (100ml)', inStock: true },
+                        { name: 'Medium Flask (250ml)', inStock: true },
+                        { name: 'Large Bottle (500ml)', inStock: false },
+                    ],
+                    description: data.imageAlt,
+                    highlights: [
+                        'Crafted under a full moon for maximum potency',
+                        'Infused with dragon scale dust for elemental balance',
+                        'Sealed with an enchanted stopper to preserve freshness',
+                        'Certified by the Guild of Alchemists',
+                    ],
+                    details : 'Each potion is brewed using rare ingredients such as phoenix feathers, enchanted spring water, and elemental essences. The Potion of Elemental Mastery is perfect for experienced magic users seeking temporary control over the elements. \nNote: Side effects may include glowing hands and a sudden affinity for elemental magic.',
+            };
+            console.log(productSelected);
+            setSelectedProduct(productSelected);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
 
     const SearchParamsHandler = () => {
         const searchParams = useSearchParams();
@@ -385,9 +442,8 @@ export default function Example() {
             const id = searchParams.get('productId');
             console.log(id);
             setSelectedId(id || '');
-            const productSelected = products.find((product) => product.id === id);
-            setSelectedProduct(productSelected || products[0]);
-            console.log(productSelected);
+            if(!id) return;
+            fetchProduct(id);
         }, [searchParams]);
 
         return null; // Pas besoin de retourner un composant visuel ici
@@ -417,7 +473,6 @@ export default function Example() {
             setSuccess('Product added to cart');
 
             localStorage.setItem('cart', JSON.stringify(cart));
-            sendEventToKafka('addToCart', { productId: selectedProduct.id, quantity, price: selectedProduct.price, name: selectedProduct.name });
         }
 
         console.log(localStorage.getItem('cart'));
@@ -425,7 +480,7 @@ export default function Example() {
         // router.push('/shopping_cart');
     };
 
-
+    
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
@@ -635,7 +690,7 @@ export default function Example() {
                                     // type="submit"
                                     className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-tr from-purple-400 via-indigo-500 to-indigo-400 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                 >
-                                    Add to bag
+                                    Add to cart
                                 </button>
                             </form>
                         </div>

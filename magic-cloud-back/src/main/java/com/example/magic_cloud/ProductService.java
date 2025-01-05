@@ -41,4 +41,11 @@ public class ProductService {
         return products.isEmpty() ? null : products.get(0);
     }
 
+    public Product edit(Product product) {
+        // Update product
+        String sql = "UPDATE products SET name = ?, price = ?, imageSrc = ?, imageAlt = ? WHERE id_product = ?";
+        jdbcTemplate.update(sql, product.getName(), product.getPrice(), product.getImageSrc(), product.getImageAlt(), product.getIdProduct());
+        return product;
+    }
+
 }

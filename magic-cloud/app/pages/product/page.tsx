@@ -369,7 +369,7 @@ function classNames(...classes: string[]) {
 export default function Example() {
     const [selectedColor, setSelectedColor] = useState(product.colors[0]);
     const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-    const [, setSelectedId] = useState<string>('');
+    const [selectedId, setSelectedId] = useState<string>('');
     const [selectedProduct, setSelectedProduct] = useState<Product>(product);
     const [success, setSuccess] = useState('');
 
@@ -436,19 +436,24 @@ export default function Example() {
 
     const SearchParamsHandler = () => {
         const searchParams = useSearchParams();
-
+    
         useEffect(() => {
-            console.log(localStorage.getItem('cart'));
-            const id = searchParams.get('productId');
-            console.log(id);
-            setSelectedId(id || '');
-            if(!id) return;
-            fetchProduct(id);
-        }, [searchParams]);
-
-        return null; // Pas besoin de retourner un composant visuel ici
+            const id = searchParams.get('productId'); // Extract `productId` from `searchParams`.
+            if (id && id !== selectedId) { // Ensure we don't repeatedly update the same state
+                setSelectedId(id);
+                fetchProduct(id); // Fetch product details only if `id` exists and is new
+            }
+        }, [searchParams]); // Dependency array ensures this runs only when `searchParams` changes
+    
+        return null; // No visual component needed
     };
 
+    useEffect(() => {
+        console.log('useEffect ran, selectedId:', selectedId);
+    }, [selectedId]);
+    
+    
+    
     useEffect(() => {
         console.log(selectedProduct.breadcrumbs);
     }, [selectedProduct]);

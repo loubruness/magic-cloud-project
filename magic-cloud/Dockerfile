@@ -13,7 +13,7 @@ COPY . ./
 RUN npm install
 
 # Construire l'application
-RUN npm run build
+# RUN npm run build
 
 #Copy the rest of the application source code
 COPY . .

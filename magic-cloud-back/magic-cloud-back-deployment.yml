@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magic-cloud-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magic-cloud-back
+  template:
+    metadata:
+      labels:
+        app: magic-cloud-back
+    spec:
+      containers:
+        - name: magic-cloud-back
+          image: paulinedav/magic-cloud-back
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: "postgres"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: "shop"
+            - name: DB_USER
+              value: "magic-cloud-user"
+            - name: DB_PASSWORD
+              value: "magic-cloud-password"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: magic-cloud-back
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: magic-cloud-back
+  type: ClusterIP

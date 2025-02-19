@@ -5,7 +5,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class ProductController {
@@ -21,6 +25,22 @@ public class ProductController {
     @GetMapping("/products")
     public List<Product> getProducts() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/products/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable int id) {
+        System.out.println("ID: " + id);
+        Product product = productService.getProductById(id);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(product);
+    }
+
+    @PostMapping("/products/{id}")
+    public ResponseEntity<Product> editProduct(@RequestBody Product product) {
+        Product newProduct = productService.edit(product);
+        return ResponseEntity.ok(newProduct);
     }
 }
 

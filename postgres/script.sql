@@ -72,11 +72,11 @@ VALUES ('Potions');
 -- Insert products into the products table
 INSERT INTO products (name, price, imageSrc, imageAlt, category_id)
 VALUES
-  ('Elixir of Life', 50.00, 'logo.png', 'A glowing golden potion with intricate carvings on the bottle.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1)),
-  ('Potion of Swiftness', 30.00, 'logo.png', 'A shimmering blue potion swirling with light.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1)),
-  ('Dragon''s Breath Elixir', 120.00, 'logo.png', 'A fiery red potion with smoke rising from the cork.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1)),
-  ('Invisibility Draught', 90.00, 'logo.png', 'A translucent potion with a faint silver glow.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1)),
-  ('Phoenix Tears', 150.00, 'logo.png', 'A radiant bottle with golden liquid and a phoenix feather inside.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1));
+  ('Elixir of Life', 50.00, 'logo', 'A glowing golden potion with intricate carvings on the bottle.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1)),
+  ('Potion of Swiftness', 30.00, 'logo', 'A shimmering blue potion swirling with light.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1)),
+  ('Dragon''s Breath Elixir', 120.00, 'logo', 'A fiery red potion with smoke rising from the cork.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1)),
+  ('Invisibility Draught', 90.00, 'logo', 'A translucent potion with a faint silver glow.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1)),
+  ('Phoenix Tears', 150.00, 'logo', 'A radiant bottle with golden liquid and a phoenix feather inside.', (SELECT id FROM categories WHERE name = 'Potions' LIMIT 1));
 
 -- Commit the transaction
 COMMIT;

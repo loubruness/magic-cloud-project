@@ -13,6 +13,10 @@ module.exports = {
               destination: 'http://magic-cloud-back:8080/products',
           },
           {
+            source: '/api/products/:id',
+            destination: 'http://magic-cloud-back:8080/products/:id',
+          },
+          {
             source: '/api/register',
             destination: 'http://magic-cloud-auths:8081/api/register',
           },

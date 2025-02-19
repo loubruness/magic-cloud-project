@@ -131,48 +131,60 @@ const navigation = {
     ],
 };
 
-const products = [
-    {
-        id: 1,
-        name: 'Elixir of Life',
-        href: '#',
-        price: '50 🪙',
-        imageSrc: logo,
-        imageAlt: 'A glowing golden potion with intricate carvings on the bottle.',
-    },
-    {
-        id: 2,
-        name: 'Potion of Swiftness',
-        href: '#',
-        price: '30 🪙',
-        imageSrc: logo,
-        imageAlt: 'A shimmering blue potion swirling with light.',
-    },
-    {
-        id: 3,
-        name: 'Dragon’s Breath Elixir',
-        href: '#',
-        price: '120 🪙',
-        imageSrc: logo,
-        imageAlt: 'A fiery red potion with smoke rising from the cork.',
-    },
-    {
-        id: 4,
-        name: 'Invisibility Draught',
-        href: '#',
-        price: '90 🪙',
-        imageSrc: logo,
-        imageAlt: 'A translucent potion with a faint silver glow.',
-    },
-    {
-        id: 5,
-        name: 'Phoenix Tears',
-        href: '#',
-        price: '150 🪙',
-        imageSrc: logo,
-        imageAlt: 'A radiant bottle with golden liquid and a phoenix feather inside.',
-    },
-];
+// const products = [
+//     {
+//         id: 1,
+//         name: 'Elixir of Life',
+//         href: '#',
+//         price: '50 🪙',
+//         imageSrc: logo,
+//         imageAlt: 'A glowing golden potion with intricate carvings on the bottle.',
+//     },
+//     {
+//         id: 2,
+//         name: 'Potion of Swiftness',
+//         href: '#',
+//         price: '30 🪙',
+//         imageSrc: logo,
+//         imageAlt: 'A shimmering blue potion swirling with light.',
+//     },
+//     {
+//         id: 3,
+//         name: 'Dragon’s Breath Elixir',
+//         href: '#',
+//         price: '120 🪙',
+//         imageSrc: logo,
+//         imageAlt: 'A fiery red potion with smoke rising from the cork.',
+//     },
+//     {
+//         id: 4,
+//         name: 'Invisibility Draught',
+//         href: '#',
+//         price: '90 🪙',
+//         imageSrc: logo,
+//         imageAlt: 'A translucent potion with a faint silver glow.',
+//     },
+//     {
+//         id: 5,
+//         name: 'Phoenix Tears',
+//         href: '#',
+//         price: '150 🪙',
+//         imageSrc: logo,
+//         imageAlt: 'A radiant bottle with golden liquid and a phoenix feather inside.',
+//     },
+// ];
+
+type ProductDb = {
+    idProduct: string | number;
+    name: string;
+    price: string;
+    imageSrc: string;
+    imageAlt: string;
+};
+
+type Product = ProductDb & {
+    href: string;
+};
 
 const sortOptions = [
     { name: 'Most Popular', href: '#', current: true },
@@ -229,36 +241,18 @@ function classNames(...classes: string[]) {
 }
 
 
-const sendEventToKafka = async (event: string, data: unknown) => {
-    try {
-        await fetch('/api/kafka', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ event, data }),
-        });
-    } catch (error) {
-        console.error('Failed to send event to Kafka:', error);
-    }
-};
-
-
 export default function Example() {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     const [openPop, setOpen] = useState(false)
+    const [products, setProducts] = useState<Product[]>([]);
 
     const router = useRouter();
 
     const openProduct = (idProduct: string | number) => {
-        sendEventToKafka('openProduct', { productId: idProduct });
         router.push('/pages/product?productId=' + idProduct);
 
     }
 
-    function navPage(idProduct: string | number) {
-        sendEventToKafka('navPage', { pageId: idProduct });
-    }
 
     // useEffect(() => {
     //     if (typeof window !== 'undefined') {
@@ -267,22 +261,9 @@ export default function Example() {
     // }, [])
     
 
-    const fetchProducts = async () => {
-        try {
-            console.log('fetching products');
-            const response = await fetch('http://magic-cloud-back.info/products');
-            if (!response.ok) {
-                throw new Error('Failed to fetch products');
-            }
-            console.log(response);
-            const data = await response.json();
-            console.log(data);  // Should log the list of products
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    };
 
-    const fetchProducts2 = async () => {
+
+    const fetchProducts = async () => {
         try {
             console.log('fetching products');
             const response = await fetch('/api/products'); // Calls the proxy route
@@ -292,80 +273,20 @@ export default function Example() {
             console.log(response);
             const data = await response.json();
             console.log(data); // Should log the list of products
+            const dataProducts = data.map((p : ProductDb) => ({
+                ...p,
+                price: p.price + ' 🪙',
+                imageSrc: logo,
+                href: `product?productId=${p.idProduct}`,
+            }));
+            setProducts(dataProducts);
         } catch (error) {
             console.error('Error fetching products:', error);
         }
     };
     
-
-    const fetchProducts3 = async () => {
-        try {
-            console.log('fetching products');
-            const response = await fetch('http://magic-cloud-back.default.svc.cluster.local:80/products');
-            if (!response.ok) {
-                throw new Error('Failed to fetch products');
-            }
-            console.log(response);
-            const data = await response.json();
-            console.log(data);  // Should log the list of products
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    };
-
-    const fetchProducts4 = async () => {
-        try {
-            console.log('fetching products');
-            const response = await fetch('http://localhost:8080/products');
-            if (!response.ok) {
-                throw new Error('Failed to fetch products');
-            }
-            console.log(response);
-            const data = await response.json();
-            console.log(data);  // Should log the list of products
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    };
-
-    const fetchProducts5 = async () => {
-        try {
-            console.log('fetching products');
-            const response = await fetch('http://magic-cloud-back.default.svc.cluster.local:8080/products');
-            if (!response.ok) {
-                throw new Error('Failed to fetch products');
-            }
-            console.log(response);
-            const data = await response.json();
-            console.log(data);  // Should log the list of products
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    };
-
-    const fetchProducts6 = async () => {
-        try {
-            console.log('fetching products');
-            const response = await fetch('http://pod-service/products');
-            if (!response.ok) {
-                throw new Error('Failed to fetch products');
-            }
-            console.log(response);
-            const data = await response.json();
-            console.log(data);  // Should log the list of products
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    };
-
     useEffect(() => {
-        console.log('here');
         fetchProducts();
-        fetchProducts2();
-        fetchProducts3();
-        fetchProducts4();
-        fetchProducts5();
-        fetchProducts6();
     }, []);
 
 
@@ -442,7 +363,7 @@ export default function Example() {
                                                                                     >
                                                                                         {section.items.map((item) => (
                                                                                             <li key={item.name} className="flex">
-                                                                                                <Link href="./filler" onClick={() => navPage(item.id)}>
+                                                                                                <Link href="./filler">
                                                                                                     <div className="hover:text-gray-800">
                                                                                                         {item.name}
                                                                                                     </div></Link>
@@ -465,7 +386,6 @@ export default function Example() {
                                             <a
                                                 key={page.name}
                                                 href={page.href}
-                                                onClick={() => navPage(page.id)}
                                                 className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                                             >
                                                 {page.name}
@@ -717,7 +637,7 @@ export default function Example() {
 
                                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                                         {products.map((product) => (
-                                            <a onClick={() => openProduct(product.id)} key={product.id} href={product.href} className="group">
+                                            <a onClick={() => openProduct(product.idProduct)} key={product.idProduct} href={product.href} className="group">
                                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                                                     <Image
                                                         src={product.imageSrc}
